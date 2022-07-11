@@ -1,4 +1,4 @@
-FROM python=3.10-alpine
+FROM python:3.10-alpine
 
 COPY . /app
 
@@ -8,6 +8,8 @@ RUN pip install -r requirements.txt
 
 EXPOSE $PORT
 
-ENTRYPOINT [ "flask" ]
+# ENTRYPOINT [ "python" ]
 
-CMD [ "run" ]
+# CMD [ "main.py" ]
+CMD gunicorn --workers=4 --bind 0.0.0.0:$PORT main:app
+
