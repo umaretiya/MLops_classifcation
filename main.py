@@ -1,12 +1,12 @@
-from flask import Flask
+from flask import Flask,render_template
 
-"https://github.com/umaretiya/MLops_classifcation"
+
 
 app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "<h1>Welcome to Machine Learning Classification Automation Projects</h1>"
+    return render_template("index.html")
 
 if __name__ == "__main__":
     app.run()
