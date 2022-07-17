@@ -10,7 +10,8 @@ app = Flask(__name__)
 
 # with open("D:\\PycharmProjects\\DS_ML_Self\\MLops_classifcation\\notebooks\\xgb_banking.pkl", "rb") as f:
     # file = f.read()
-with open("D:\\PycharmProjects\\DS_ML_Self\\MLops_classifcation\\notebooks\\xgb_banking.pkl", "rb") as file:
+# with open("D:\\PycharmProjects\\DS_ML_Self\\MLops_classifcation\\notebooks\\xgb_banking.pkl", "rb") as file:
+with open("notebooks\\xgb_banking.pkl", "rb") as file:
     pick = file.read()
     gredeint_model = pickle.loads(pick)
 
@@ -95,13 +96,12 @@ def classify():
         xint =[float(i) for i in input_data.values()]
         array_input = np.array(xint).reshape(1,15)
         results = gredeint_model.predict(array_input)
-        print(results)
         if results[0] == 0:
             flash("Results is 0, No chanse for defalut: ","success")
             return render_template("index.html",context={"message":results[0]})
-        else:
+        elif results[0] == 1:
             flash("Results is 1, High chanse for defalut: ","warning")
-            return render_template("classifcation_data.html",context={"message": results[0]})
+            return render_template("index.html",context={"message": results[0]})
     # except:
     #     flash("Something went wrong")
     #     return render_template("index.html",context={"message": gredeint_model})
