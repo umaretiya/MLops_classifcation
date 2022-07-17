@@ -1,17 +1,19 @@
-from django.shortcuts import redirect
 from flask import Flask,render_template, flash, request
-import io
+import os
 import pickle,bz2
 import numpy as np
-import pandas as pd
+from config import Config
 
 app = Flask(__name__)
 
+app.secret_key = "any random string"
 
+app.config.from_object(Config)
 # with open("D:\\PycharmProjects\\DS_ML_Self\\MLops_classifcation\\notebooks\\xgb_banking.pkl", "rb") as f:
     # file = f.read()
+path = os.path.join("notebooks","xgb_banking.pkl")
 # with open("D:\\PycharmProjects\\DS_ML_Self\\MLops_classifcation\\notebooks\\xgb_banking.pkl", "rb") as file:
-with open("notebooks\\xgb_banking.pkl", "rb") as file:
+with open(path, "rb") as file:
     pick = file.read()
     gredeint_model = pickle.loads(pick)
 
@@ -114,4 +116,4 @@ def classify():
 
 if __name__ == "__main__":
     app.secret_key = 'super secret key'
-    app.run(debug=True)
+    app.run(debug=False)

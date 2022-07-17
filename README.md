@@ -22,8 +22,9 @@ docker images
 ```
 Run docker image
 ```
-docker run -p 5000:5000 -e PORT=5000 d033f59ea12f
+docker run -p 5000:5000 -e PORT=5000 f3322f5e3b00
 ```
+python -c 'import secrets; print(secrets.token_hex())'
 
 To check runnig container in docker
 ```
@@ -38,3 +39,19 @@ Creating yaml file
 ```
 .github/workflows/main.yaml
 ```
+
+### Final ramarks: ML Clssification projects
+- docker images - banking
+- get repo - MLops_classifcation
+- heroku app - ml-classify
+- local dir - MLops_classifcation
+- Author - Keshav
+- Sector - Banking
+- Use case - Default of Credit Card clients of Bank
+- Datasets - archive.ics.uci.edu/ml/datasets
+- Final Data - kaggle - default-of-credit-card-clients-dataset
+- labels 0 or 1 - 1 for default and 0 for not default
+- Model - XGBClassifier
+- Accuracy - 81 %
+- Framework - Flask-Python
+- environment - conda
