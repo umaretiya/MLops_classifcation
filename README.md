@@ -4,8 +4,11 @@
 [repo link]("https://github.com/umaretiya/MLops_classifcation")
 
 Create first flask classifciation  machine learning project
+```{link of repo}
+[repo link](https://github.com/umaretiya/MLops_classifcation.git)
+```
 
-
+XGBoost model for credit card default prediction : ML projects
 ### Buld docker image
 - Image name banking:latest
 ```
