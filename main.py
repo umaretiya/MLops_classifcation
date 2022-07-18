@@ -2,15 +2,17 @@ from flask import Flask,render_template, flash, request
 import os
 import pickle,bz2
 import numpy as np
-from config import Config
-
+from configure import Config
+from banking.pipeline.pipeline import Pipeline
 app = Flask(__name__)
 
 app.secret_key = "any random string"
 
+# KaggleDataset.kaggle_jason_file()
+# KaggleDataset.kaggle_data()
+
 app.config.from_object(Config)
-# with open("D:\\PycharmProjects\\DS_ML_Self\\MLops_classifcation\\notebooks\\xgb_banking.pkl", "rb") as f:
-    # file = f.read()
+
 path = os.path.join("notebooks","xgb_banking.pkl")
 # with open("D:\\PycharmProjects\\DS_ML_Self\\MLops_classifcation\\notebooks\\xgb_banking.pkl", "rb") as file:
 with open(path, "rb") as file:

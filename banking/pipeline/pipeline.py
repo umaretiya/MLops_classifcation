@@ -1,11 +1,10 @@
-from distutils.command.config import config
-
-from django import conf
 from banking.exception import BankingException
 from banking.logger import logging
-from banking.entity.artifact_entity import DataIngestionArtifact
+from banking.entity.artifact_entity import DataIngestionArtifact,DataValidationArtifact
 from banking.entity.config_entity import DataIngestionConfig, TrainingPipelineConfig
 from banking.component.data_ingestion import DataIngestion
+from banking.component.data_validation import DataValidation
+from banking.component.data_transformation_clf import DataTransformation
 from banking.config.configuration import Configuration 
 from banking.constant import EXPERIMENT_DIR_NAME,EXPERIMENT_FILE_NAME
 from collections import namedtuple 
@@ -37,4 +36,26 @@ class Pipeline(Thread):
             data_ingestion = DataIngestion(data_ingestion_config=self.config.get_data_ingestion_config())
             return data_ingestion.initiate_data_ingestion()
         except Exception as e:
-            raise BankingException(e, sys) from e            
+            raise BankingException(e, sys) from e      
+         
+        
+    def start_data_validation(self, data_ingestion_artifact:DataIngestionArtifact):
+        try:
+            data_validation = DataValidation(data_validation_config=self.config.get_data_validation_config(),
+                                             data_ingestion_artifact=data_ingestion_artifact) 
+            return data_validation
+        except Exception as e:
+            raise BankingException(e, sys) from e  
+        
+    def start_data_transformation(self,
+                                  data_ingestion_artifact:DataIngestionArtifact,
+                                  data_validation_artifact:DataValidationArtifact):
+        try:
+            data_transformation = DataTransformation(
+                data_transformation_config=self.config.get_data_transformation_config(),
+                data_ingestion_artifact=data_ingestion_artifact,
+                data_validation_artifact=data_validation_artifact
+            )
+            return data_transformation.initiate_data_transformation()
+        except Exception as e:
+            raise BankingException(e, sys) from e 
