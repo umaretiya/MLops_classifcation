@@ -165,6 +165,7 @@ class DataTransformation:
                 transformed_test_file_path=transformed_test_file_path,
                 preprocessed_object_file_path=preprocessing_obj_file_path
             )
+            print(f"--data_transformation---->>>>>>>{data_transformation_artifact}<<<<<<<<---data_transformation_artifact-------------")
             logging.info(f"Data transforamtion artifact: {data_transformation_artifact}")
             return data_transformation_artifact
         except Exception as e:

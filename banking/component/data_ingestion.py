@@ -1,5 +1,3 @@
-from cmath import log
-from posixpath import split
 from banking.exception import BankingException
 from banking.logger import logging 
 from banking.entity.artifact_entity import DataIngestionArtifact
@@ -10,8 +8,8 @@ from sklearn.model_selection import StratifiedShuffleSplit, train_test_split
 import numpy as np 
 import pandas as pd 
 
-import os, sys
-import zipfile,tarfile
+import os, sys,shutil
+import zipfile
 
 
 class DataIngestion:
@@ -25,22 +23,23 @@ class DataIngestion:
 
     def download_bankig_data(self):
         try:
-            download_url = self.data_ingestion_config.dataset_download_url
-        
-            tgz_download_dir = self.data_ingestion_config.tgz_download_dir
+            
+            # download_url = self.data_ingestion_config.dataset_download_url
+    
+            tgz_download_dir = self.data_ingestion_config.tgz_download_dir # target dir 
             
             os.makedirs(tgz_download_dir,exist_ok=True)
-            banking_file_name = self.data_ingestion_config.dataset_file_name
+            # banking_file_name = self.data_ingestion_config.dataset_file_name
             
-            tgz_file_name = self.data_ingestion_config.dataset_zip_file_name
+            tgz_file_name = self.data_ingestion_config.dataset_zip_file_name # zipfile name 
+            source_data_dir = ROOT_DIR
+            src = os.path.join(source_data_dir, tgz_file_name)
+            # kaggel = KaggleDataset(tgz_download_dir)
             
-            kaggel = KaggleDataset(tgz_download_dir)
-            
-            kaggel.kaggle_jason_file()
-            kaggel.kaggle_data(download_url, banking_file_name)
-            
-            # tgz_file_path =os.path.join(tgz_download_dir,tgz_file_name)
-            
+            # kaggel.kaggle_jason_file()
+            # kaggel.kaggle_data(download_url, banking_file_name)
+        
+            shutil.copy(src, tgz_download_dir)
             zip_file_path = os.path.join(tgz_download_dir,tgz_file_name)
           
             return zip_file_path
@@ -58,6 +57,11 @@ class DataIngestion:
             
             with zipfile.ZipFile(zip_file_path, 'r') as zipref:
                 zipref.extractall(raw_data_dir)
+            file_name = os.listdir(raw_data_dir)[0]
+            banking_file_path = os.path.join(raw_data_dir,file_name)
+            banking_data_frame = pd.read_csv(banking_file_path)
+            banking_data_frame.rename(mapper={'default.payment.next.month':"default"},axis=1,inplace=True)
+            banking_data_frame.to_csv(banking_file_path,index=False)
         except Exception as e:
             raise BankingException(e, sys) from e 
         
@@ -69,9 +73,10 @@ class DataIngestion:
             
             logging.info(f"Rading csv file: [{banking_file_path}]")
             banking_data_frame = pd.read_csv(banking_file_path)
-
-            X = banking_data_frame.drop(labels=['default.payment.next.month'], axis=1)
-            y = banking_data_frame['default.payment.next.month']
+            # banking_data_frame.rename(mapper={'default.payment.next.month':"default"},axis=1,inplace=True)
+            
+            # X = banking_data_frame.drop(labels=['default'], axis=1)
+            # y = banking_data_frame['default']
             strat_train_set=None
             strat_test_set = None
             # split=StratifiedShuffleSplit(n_splits=1,test_size=0.2,random_state=42)

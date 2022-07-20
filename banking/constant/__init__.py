@@ -7,10 +7,10 @@ def get_current_time_stamp():
 ROOT_DIR = os.getcwd()
 CONFIG_DIR = 'config'
 CONFIG_FILE_NAME = 'config.yaml'
-CONFIG_FILE_PATH=os.path.join(ROOT_DIR,CONFIG_DIR,CONFIG_FILE_NAME)
+CONFIG_FILE_PATH= os.path.join(ROOT_DIR,CONFIG_DIR,CONFIG_FILE_NAME)
 
 CURRENT_TIME_STAMP = get_current_time_stamp()
-
+TRAINING_PIPELINE_CONFIG_KEY= "training_pipeline_config"
 TRAINING_PIPELINAE_CONFIG_KEY = "training_pipeline_config"
 TRAINING_PIPELINE_ARTIFACT_DIR_KEY = "artifact_dir"
 TRAINING_PIPELINE_NAME_KEY = "pipeline_name"
@@ -64,7 +64,7 @@ TARGET_COLUMN_KEY="target_column"
 # Model trainer constant
 MODEL_TRAINER_ARTIFACT_DIR="model_trainer"
 MODEL_TRAINER_CONFIG_KEY="model_trainer_config"
-MODEL_TRAINER_TRAINED_MODEL_DIR_KEY="model_trainer_dir"
+MODEL_TRAINER_TRAINED_MODEL_DIR_KEY = "trained_model_dir"
 MODEL_TRAINER_TRAINED_MODEL_FILE_NAME_KEY="model_file_name"
 MODEL_TRAINER_BASE_ACCURACY_KEY="base_accuracy"
 MODEL_TRAINER_MODEL_CONFIG_DIR_KEY="model_config_dir"

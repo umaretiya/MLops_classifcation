@@ -23,7 +23,7 @@ columns:
   PAY_AMT4: float
   PAY_AMT5: float
   PAY_AMT6: float
-  default.payment.next.month: float
+  default: float
 
 numerical_columns:
   - ID
@@ -50,23 +50,16 @@ numerical_columns:
   - PAY_AMT4
   - PAY_AMT5
   - PAY_AMT6
-  - default.payment.next.month
+  - default
 
 categorical_columns:
   - SEX
-  - EDUCATION
 
-target_column: default.payment.next.month
+
+target_column: default
 
 domain_value:
   SEX:
     - male
     - female
-  
-  EDUCATION:
-    - graduate school
-    - university
-    - high school
-    - others
-    - unknown
   
