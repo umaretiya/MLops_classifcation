@@ -92,30 +92,30 @@ def predict():
         DEFAULT_NEXT_MONTH: None }
     try:
         if request.method == 'POST':
-            ID= float(request.form['ID']),
-            LIMIT_BAL= float(request.form['LIMIT_BAL']),
-            SEX= float(request.form['SEX']),
-            EDUCATION= float(request.form['EDUCATION']),
-            MARRIAGE= float(request.form['MARRIAGE']),
-            AGE= float(request.form['AGE']),
-            PAY_0= float(request.form['PAY_0']),
-            PAY_2= float(request.form['PAY_2']),
-            PAY_3= float(request.form['PAY_3']),
-            PAY_4= float(request.form['PAY_4']),
-            PAY_5= float(request.form['PAY_5']),
-            PAY_6= float(request.form['PAY_6']),
-            BILL_AMT1= float(request.form['BILL_AMT1']),
-            BILL_AMT2= float(request.form['BILL_AMT2']),
-            BILL_AMT3= float(request.form['BILL_AMT3']),
-            BILL_AMT4= float(request.form['BILL_AMT4']),
-            BILL_AMT5= float(request.form['BILL_AMT5']),
-            BILL_AMT6= float(request.form['BILL_AMT6']),
-            PAY_AMT1= float(request.form['PAY_AMT1']),
-            PAY_AMT2= float(request.form['PAY_AMT2']),
-            PAY_AMT3= float(request.form['PAY_AMT3']),
-            PAY_AMT4= float(request.form['PAY_AMT4']),
-            PAY_AMT5= float(request.form['PAY_AMT5']),
-            PAY_AMT6= float(request.form['PAY_AMT6']),
+            ID= float(request.form['ID'])
+            LIMIT_BAL= float(request.form['LIMIT_BAL'])
+            SEX= float(request.form['SEX'])
+            EDUCATION= float(request.form['EDUCATION'])
+            MARRIAGE= float(request.form['MARRIAGE'])
+            AGE= float(request.form['AGE'])
+            PAY_0= float(request.form['PAY_0'])
+            PAY_2= float(request.form['PAY_2'])
+            PAY_3= float(request.form['PAY_3'])
+            PAY_4= float(request.form['PAY_4'])
+            PAY_5= float(request.form['PAY_5'])
+            PAY_6= float(request.form['PAY_6'])
+            BILL_AMT1= float(request.form['BILL_AMT1'])
+            BILL_AMT2= float(request.form['BILL_AMT2'])
+            BILL_AMT3= float(request.form['BILL_AMT3'])
+            BILL_AMT4= float(request.form['BILL_AMT4'])
+            BILL_AMT5= float(request.form['BILL_AMT5'])
+            BILL_AMT6= float(request.form['BILL_AMT6'])
+            PAY_AMT1= float(request.form['PAY_AMT1'])
+            PAY_AMT2= float(request.form['PAY_AMT2'])
+            PAY_AMT3= float(request.form['PAY_AMT3'])
+            PAY_AMT4= float(request.form['PAY_AMT4'])
+            PAY_AMT5= float(request.form['PAY_AMT5'])
+            PAY_AMT6= float(request.form['PAY_AMT6'])
         
             banking_data = BankingData(
                     ID =ID,
@@ -144,6 +144,7 @@ def predict():
                     PAY_AMT6=PAY_AMT6,
                     )
             banking_df =banking_data.get_banking_input_data_frame()
+            
             banking_predictor = BankingPredictor(model_dir=MODEL_DIR)
             default = banking_predictor.predict(X=banking_df)
             context={

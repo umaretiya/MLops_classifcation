@@ -58,6 +58,7 @@ class DataIngestion:
             with zipfile.ZipFile(zip_file_path, 'r') as zipref:
                 zipref.extractall(raw_data_dir)
             file_name = os.listdir(raw_data_dir)[0]
+            
             banking_file_path = os.path.join(raw_data_dir,file_name)
             banking_data_frame = pd.read_csv(banking_file_path)
             banking_data_frame.rename(mapper={'default.payment.next.month':"default"},axis=1,inplace=True)

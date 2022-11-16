@@ -1,0 +1,9 @@
+best_model:
+  model_path: D:\PycharmProjects\DS_ML_Self\MLops_classifcation\banking\artifact\model_trainer\2022-07-26-23-29-11\trained_model\model.pkl
+history:
+  2022-07-22-17-50-04:
+    model_path: D:\PycharmProjects\DS_ML_Self\MLops_classifcation\banking\artifact\model_trainer\2022-07-22-17-50-04\trained_model\model.pkl
+  2022-07-22-17-57-12:
+    model_path: D:\PycharmProjects\DS_ML_Self\MLops_classifcation\banking\artifact\model_trainer\2022-07-22-17-50-04\trained_model\model.pkl
+  2022-07-26-23-29-11:
+    model_path: D:\PycharmProjects\DS_ML_Self\MLops_classifcation\banking\artifact\model_trainer\2022-07-22-17-57-12\trained_model\model.pkl
